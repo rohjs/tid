@@ -1,24 +1,26 @@
 import { prismy, res } from 'prismy'
 import { methodRouter } from 'prismy-method-router'
-import { User } from '../../lib/models'
-import { sessionSelector, sessionMiddleware } from '../../lib/selectors'
+import { User, DayLog } from '../../lib/models'
+import {
+  sessionMiddleware,
+  authenticatedUserSelector,
+} from '../../lib/selectors'
 import { withErrorHandler } from '../../lib/middlewares'
 
 export default methodRouter({
   get: prismy(
-    [sessionSelector],
-    async (session) => {
-      const { userId } = session.data || {}
+    [authenticatedUserSelector],
+    async (user) => {
+      let dayLogs
+      if (user != null) {
+        dayLogs = await DayLog.findAll({
+          where: {
+            userId: user.id,
+          },
+        })
+      }
 
-      const user = isNaN(parseInt(userId, 10))
-        ? null
-        : await User.findOne({
-            where: {
-              id: parseInt(userId, 10),
-            },
-          })
-
-      return res({ user })
+      return res({ user, dayLogs })
     },
     [sessionMiddleware, withErrorHandler]
   ),
