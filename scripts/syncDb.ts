@@ -1,9 +1,9 @@
-import { Post, User, GithubUserProfile } from '../lib/models'
+import { User, GithubUserProfile, DayLog } from '../lib/models'
 
 async function syncDb() {
-  await Post.sync()
-  await User.sync()
-  await GithubUserProfile.sync()
+  await User.sync({ force: true })
+  await GithubUserProfile.sync({ force: true })
+  await DayLog.sync({ force: true })
 }
 
 syncDb()
