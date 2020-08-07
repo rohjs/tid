@@ -2,10 +2,10 @@ import { prismy, querySelector, redirect } from 'prismy'
 import { methodRouter } from 'prismy-method-router'
 import { Octokit } from '@octokit/rest'
 import { createOAuthAppAuth } from '@octokit/auth-oauth-app'
+import { TokenAuthentication } from '@octokit/auth-oauth-app/dist-types/types'
 import { User, GithubUserProfile } from '../../../lib/models'
 import { withErrorHandler } from '../../../lib/middlewares'
 import { sessionSelector, sessionMiddleware } from '../../../lib/selectors'
-import { TokenAuthentication } from '@octokit/auth-oauth-app/dist-types/types'
 
 export default methodRouter({
   get: prismy(
