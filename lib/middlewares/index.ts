@@ -1,0 +1,1 @@
+export { withErrorHandler } from './withErrorHandler'
