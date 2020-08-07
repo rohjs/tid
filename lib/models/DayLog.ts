@@ -18,14 +18,14 @@ class DayLog extends Model<DayLogAttributes, DayLogCreationAttributes>
     fixSequelizeModel(new.target, this)
   }
 
-  readonly id!: number
-  date!: string
-  title!: string
-  content!: string
-  userId!: number
+  public readonly id!: number
+  public date!: string
+  public title!: string
+  public content!: string
+  public userId!: number
 
-  createdAt!: Date
-  updatedAt!: Date
+  public createdAt!: Date
+  public updatedAt!: Date
 }
 
 DayLog.init(

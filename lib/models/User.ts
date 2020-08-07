@@ -18,8 +18,7 @@ class User extends Model<UserAttributes, UserCreationAttributes>
 
   public readonly id!: number
   public name!: string
-  public githubToken!: string
-  public githubId!: string
+
   public createdAt!: Date
   public updatedAt!: Date
 }
