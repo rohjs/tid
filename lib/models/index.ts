@@ -1,6 +1,6 @@
 import User from './User'
 import GithubUserProfile from './GithubUserProfile'
-import Post from './Post'
+import DayLog from './DayLog'
 
 User.hasOne(GithubUserProfile)
 GithubUserProfile.belongsTo(User, {
@@ -10,4 +10,12 @@ GithubUserProfile.belongsTo(User, {
   },
 })
 
-export { User, GithubUserProfile, Post }
+User.hasMany(DayLog)
+DayLog.belongsTo(User, {
+  foreignKey: {
+    name: 'userId',
+    allowNull: false,
+  },
+})
+
+export { User, GithubUserProfile, DayLog }
